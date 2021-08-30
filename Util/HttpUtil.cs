@@ -20,7 +20,7 @@ namespace ParseXml.Util
                 string result = "";
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
                 req.Method = "POST";
-                req.Timeout = 3000;
+                req.Timeout = GlobalParam.TIME_OUT;
                 req.ContentType = "application/json";
                 byte[] data = Encoding.UTF8.GetBytes(postData);
                 req.ContentLength = data.Length;

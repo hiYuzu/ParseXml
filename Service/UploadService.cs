@@ -5,7 +5,6 @@ using System;
 using System.IO;
 using ParseXml.Util;
 using System.Xml;
-using System.Diagnostics;
 
 namespace ParseXml.Service
 {
@@ -20,6 +19,9 @@ namespace ParseXml.Service
         //待上传文件
         private IEnumerator<string> files;
 
+        /// <summary>
+        /// 服务入口，开启守护线程
+        /// </summary>
         public void StartService()
         {
             try
@@ -43,7 +45,7 @@ namespace ParseXml.Service
         }
 
         /// <summary>
-        /// 获取数据守护线程
+        /// 守护线程
         /// </summary>
         private void GuardThread()
         {
@@ -77,7 +79,7 @@ namespace ParseXml.Service
         }
 
         /// <summary>
-        /// 操作获取数据线程
+        /// 操作线程
         /// </summary>
         private void DataThread()
         {
@@ -86,7 +88,7 @@ namespace ParseXml.Service
                 try
                 {
                     ScanFiles();
-                    Thread.Sleep(10000);
+                    Thread.Sleep(GlobalParam.INTERNAL);
                 }
                 catch (ThreadAbortException)
                 {
@@ -96,7 +98,7 @@ namespace ParseXml.Service
                 catch (Exception ex)
                 {
                     Log4NetUtil.Error(ex.GetType().ToString() + "：" + ex.Message);
-                    Thread.Sleep(10000);
+                    Thread.Sleep(GlobalParam.INTERNAL);
                 }
             }
         }
@@ -117,6 +119,9 @@ namespace ParseXml.Service
             }
         }
 
+        /// <summary>
+        /// 扫描待解析路径，若有，则解析
+        /// </summary>
         private void ScanFiles()
         {
             files = Directory.EnumerateFiles(GlobalParam.TO_UPLOAD, "*.xml").GetEnumerator();
@@ -126,7 +131,10 @@ namespace ParseXml.Service
             }
         }
 
-
+        /// <summary>
+        /// 解析XML并上传
+        /// </summary>
+        /// <param name="fileInfo">完整的XML文件路径</param>
         private void Parse(string fileInfo)
         {
             XmlDocument xd = new XmlDocument();
@@ -136,6 +144,11 @@ namespace ParseXml.Service
             Upload(fileInfo.Substring(fileInfo.LastIndexOf("/") + 1), xmlStr);
         }
 
+        /// <summary>
+        /// 上传XML字符串
+        /// </summary>
+        /// <param name="fileName">文件名</param>
+        /// <param name="xmlStr">XML内容</param>
         private void Upload(string fileName, string xmlStr)
         {
             xmlStr = xmlStr.Replace("\"", "\\\"");

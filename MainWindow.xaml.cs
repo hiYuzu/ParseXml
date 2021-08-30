@@ -5,7 +5,6 @@ using ParseXml.Util;
 using ParseXml.Log4Net;
 using System.IO;
 using ParseXml.Service;
-using System.Threading;
 
 namespace ParseXml
 {
@@ -16,6 +15,7 @@ namespace ParseXml
     {
         private string importDir = null;
         private UploadService uploadService;
+        private FileSystemWatcher watcher;
         public MainWindow()
         {
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace ParseXml
             }
             catch (Exception exp)
             {
-                ExceptionUtil.Instance.ExceptionMethod("程序出错，请联系开发人员：" + exp.Message, true);
+                ExceptionUtil.Instance.ExceptionMethod("程序出错，请查看软件日志或联系开发人员：" + exp.Message, true);
                 Application.Current.Shutdown();
             }
 

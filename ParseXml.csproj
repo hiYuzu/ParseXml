@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="Log4Net\Log4NetUtil.cs" />
     <Compile Include="Service\UploadService.cs" />
+    <Compile Include="Util\ConfigUtil.cs" />
     <Compile Include="Util\ExceptionUtil.cs" />
     <Compile Include="Util\GlobalParam.cs" />
     <Compile Include="Util\HttpUtil.cs" />
@@ -101,6 +102,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="config\config.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Log4Net\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
