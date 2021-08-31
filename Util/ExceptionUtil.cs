@@ -1,10 +1,11 @@
 ﻿namespace ParseXml.Util
 {
+
     /// <summary>
-    /// 委托
+    /// 异常记录委托
     /// </summary>
-    /// <param name="sender">发送者</param>
-    /// <param name="msg">异常信息</param>
+    /// <param name="msg">信息</param>
+    /// <param name="isShow">是否显示</param>
     public delegate void ExceptionDelegate(string msg, bool isShow);
 
     /// <summary>
