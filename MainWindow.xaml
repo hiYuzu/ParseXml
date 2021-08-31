@@ -9,7 +9,7 @@
         Background="AntiqueWhite"
         Title="数据交换前置工具" Height="400" Width="400">
     <Grid>
-        <Button Content="上传XML文件" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,155,0,0" Click="Button_Click" FontSize="16" Width="110" Height="25" Style="{StaticResource btnOther}"/>
+        <Button x:Name="UploadBtn" Content="上传XML文件" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,155,0,0" Click="UploadBtn_Click"  FontSize="16" Width="110" Height="25" Style="{StaticResource btnOther}"/>
         <TextBlock HorizontalAlignment="Left" Margin="35,35,0,0" Text="使用说明：" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="35,65,35,0" Text="点击按钮“上传XML文件”，选择要上传的文件即可。软件自动解析入库，解析结果可通过“爱国卫生信息管理系统-数据交换平台”查看。" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,0,0,10" Text="Copyright © 中科软科技股份有限公司.All rights reserved." TextWrapping="Wrap" VerticalAlignment="Bottom" Width="325"/>

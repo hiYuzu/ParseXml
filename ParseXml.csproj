@@ -65,6 +65,7 @@
     <Compile Include="Service\UploadService.cs" />
     <Compile Include="Util\ConfigUtil.cs" />
     <Compile Include="Util\ExceptionUtil.cs" />
+    <Compile Include="Util\FileUtil.cs" />
     <Compile Include="Util\GlobalParam.cs" />
     <Compile Include="Util\HttpUtil.cs" />
     <Page Include="MainWindow.xaml">

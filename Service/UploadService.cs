@@ -159,7 +159,7 @@ namespace ParseXml.Service
             {
                 string oldFile = GlobalParam.TO_UPLOAD + fileName;
                 string newFile = GlobalParam.UPLOADED + fileName;
-                File.Move(oldFile, newFile);
+                FileUtil.MoveFile(oldFile, newFile, true);
             }
         }
     }

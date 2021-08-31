@@ -14,8 +14,8 @@ namespace ParseXml
     public partial class MainWindow : Window
     {
         private string importDir = null;
-        private UploadService uploadService;
-        private FileSystemWatcher watcher;
+        private UploadService uploadService = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -54,7 +54,10 @@ namespace ParseXml
         /// </summary>
         private void StartService()
         {
-            uploadService = new UploadService();
+            if(uploadService == null)
+            {
+                uploadService = new UploadService();
+            }
             uploadService.StartService();
         }
 
@@ -90,7 +93,12 @@ namespace ParseXml
             Log4NetUtil.Debug(msg);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 上传按钮点击
+        /// </summary>
+        /// <param name="sender">默认参数：事件引发者</param>
+        /// <param name="e">默认参数：事件</param>
+        private void UploadBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -112,18 +120,17 @@ namespace ParseXml
             }
         }
 
+        /// <summary>
+        /// 上传（移动）文件
+        /// </summary>
+        /// <param name="file">文件完整路径</param>
         private void LoadFile(string file)
         {
             try
             {
                 string fileName = file.Substring(file.LastIndexOf("\\") + 1);
                 string newFile = GlobalParam.TO_UPLOAD + fileName;
-                if (IsExistFile(newFile))
-                {
-                    ExceptionUtil.Instance.ExceptionMethod("文件已存在！", true);
-                    return;
-                }
-                File.Copy(file, newFile);
+                FileUtil.MoveFile(file, newFile, false);
                 ExceptionUtil.Instance.LogMethod("文件“" + fileName + "”上传成功！", true);
                 StartService();
             }
